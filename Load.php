@@ -38,6 +38,12 @@
         mysql_select_db( $gaSql['db'], $gaSql['link'] ) or
                 die( 'Could not select database '. $gaSql['db'] );
 
+
+// Set internal character encoding to UTF-8 for mysql Need this for Greek Support
+   $rSn= mysql_query("SET NAMES 'UTF8'",$gaSql['link']) or die(mysql_error()."SetNames");
+   $rSc= mysql_query("SET CHARACTER SET 'utf8'") or die(mysql_error()."Set Charset");
+
+
 if ($_REQUEST['column']=="sdesc"){
 $sQuery = "SELECT `product_s_desc` FROM `jos_vm_product` WHERE `product_id`  = '".(int)$_REQUEST['pid']."'";
 } else $sQuery = "SELECT 'YEA' 'U' 'R' 'A' 'BIG' 'HACKER'";

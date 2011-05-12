@@ -135,6 +135,11 @@ $dbColumns = array('`jos_vm_product`.`product_id`','`product_thumb_image`','`pro
                         $sWhere .= "`jos_vm_shopper_group`.`shopper_group_name` LIKE '%".mysql_real_escape_string($_GET['sSearch_1'])."%' ";
                 }
 	
+
+
+// Set internal character encoding to UTF-8 for mysql Need this for Greek Support
+   $rSn= mysql_query("SET NAMES 'UTF8'",$gaSql['link']) or die(mysql_error()."SetNames");
+   $rSc= mysql_query("SET CHARACTER SET 'utf8'") or die(mysql_error()."Set Charset");
 	
 	/*
 	 * SQL queries
@@ -227,6 +232,7 @@ LEFT JOIN  `jos_vm_shopper_group` ON `jos_vm_product_price`.`shopper_group_id`=`
 
 		$output['aaData'][] = $row;
 	}
+
 	
 	echo json_encode( $output );
 ?>
